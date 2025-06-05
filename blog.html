@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogger</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        /* 主容器 */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        /* 左右分栏 */
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* 图片区域 */
+        .profile-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        /* 内容区域 */
+        .content-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* 标题样式 */
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #e74c3c;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        /* 列表样式 */
+        .list-item {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .list-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+
+        .bold-title {
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 全屏幕背景图 */
+        .full-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('zgg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+
+        /* 飘花Canvas */
+        #petals-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 允许点击穿透 */
+            z-index: -1;
+        }
+
+        /* 透明导航栏 */
+        .navbar {
+            background-color: transparent !important;
+            box-shadow: none;
+            padding: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-link:hover {
+            color: #ffd700 !important; /* 悬停时金色 */
+        }
+
+        /* 滚动时导航栏半透明效果 */
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* 透明内容区域 */
+        #home {
+            background-color: transparent;
+            padding: 10rem 0;
+            text-align: center;
+        }
+
+        h1, p {
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+        
+        /* 新增：给"生活中的我"部分添加顶部间距 */
+        .offset-section {
+            margin-top: 80px; /* 根据导航栏高度调整 */
+        }
+    </style>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- 生活中的我 -->
+    <section class="about-container offset-section">
+        <!-- 图片列 -->
+         <br>
+        <div class="column">
+            <img src="ss.jpg" alt="生活照" class="profile-image">
+        </div>
+        
+        <!-- 内容列 -->
+         <br>
+        <div class="column content-section">
+            <h2>生活中的我</h2>
+            <div class="list-item">
+                <span class="bold-title"><a href="D:\web\vs\one\旅行.html">旅行爱好者</a></span>
+                <p>人生苦短，不如做个 “行走的快乐病毒”—— 反正地球是圆的，笑出的褶子都会绕回嘴角～</p>
+            </div>
+            <div class="list-item">
+                <span class="bold-title"><a href="D:\web\vs\one\美食.html">美食探索家</a></span>
+                <p>用牙齿撕开生活的伪装，让美食的真相，在舌尖肆意绽放。</p>
+            </div>
+            <div class="list-item">
+                <span class="bold-title"><a href="D:\web\vs\one\日常.html">生活记录员</a></span>
+                <p>镜头晃了？没关系，那是心跳的抖动；画面虚了？刚好，留住了风的形状 —— 真实的碎片，比完美更有温度。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习中的我 -->
+    <section class="about-container" style="margin-top: 3rem;">
+        <!-- 图片列 -->
+         <br>
+        <div class="column">
+            <img src="xx.jpg" alt="学习照" class="profile-image">
+        </div>
+        
+        <!-- 内容列 -->
+         <br>
+        <div class="column content-section">
+            <h2>学习中的我</h2>
+            <div class="list-item">
+                <span class="bold-title"><a href="D:\web\vs\one\习.html">课程学习</a></span>
+                <p>现在埋下的种子，
+                    终会在某天，
+                    长成能遮风挡雨的树。</p>
+            </div>
+            <div class="list-item">
+                <span class="bold-title"><a href="D:\web\vs\one\学.html">学习计划</a></span>
+                <p>大学不是 “终点站”，而是 “换乘站”——
+你此刻的每一份专注，都是在为未来的 “理想换乘” 攒车票。
+别在该 “升级装备” 的年纪选择 “裸奔”，
+毕竟，当你把学习变成 “通关游戏”，
+人生才会解锁更多 “隐藏关卡” 和 “惊喜彩蛋”。
+—— 致所有在 “躺平与内卷” 间反复横跳，却依然想变好的你 🌟</p>
+            </div>
+        </div>
+    </section>
+</body>
+<body>
+    <!-- 全屏幕背景 -->
+    <div class="full-bg"></div>
+    
+    <!-- 飘花Canvas -->
+    <canvas id="petals-canvas"></canvas>
+
+    <!-- 透明导航栏 -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="file:///D:/web/vs/one/%E9%A6%96%E9%A1%B5.html">⭐ 陈佳琪的blogger简介</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="https://weibo.com">🌼 博客首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://weibo.com/7913899449/PuniCulh9">📝 精选文章</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://weibo.com/u/7913899449">👤 我的主页</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // 平滑滚动导航
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 飘花特效实现
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('petals-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置Canvas尺寸为窗口大小
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            // 监听窗口大小变化
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            // 花瓣类
+            class Petal {
+                constructor() {
+                    // 随机位置、大小和形状
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * -canvas.height; // 从屏幕上方开始
+                    this.size = Math.random() * 5 + 3; // 花瓣大小
+                    this.speed = Math.random() * 2 + 0.5; // 下落速度
+                    this.wave = Math.random() * 0.5; // 左右摆动幅度
+                    this.angle = Math.random() * Math.PI * 2; // 旋转角度
+                    this.rotationSpeed = Math.random() * 0.05 - 0.025; // 旋转速度
+                    this.opacity = Math.random() * 0.8 + 0.2; // 透明度
+                    
+                    // 随机花瓣颜色（粉色系）
+                    const colors = [
+                        'rgba(255, 192, 203,', 
+                        'rgba(255, 182, 193,', 
+                        'rgba(255, 174, 185,',
+                        'rgba(255, 160, 172,'
+                    ];
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                }
+                
+                // 更新花瓣位置和状态
+                update() {
+                    this.y += this.speed;
+                    this.x += Math.sin(this.angle) * this.wave;
+                    this.angle += this.rotationSpeed;
+                    
+                    // 如果花瓣落到屏幕底部，重新放置到顶部
+                    if (this.y > canvas.height) {
+                        this.y = -this.size;
+                        this.x = Math.random() * canvas.width;
+                    }
+                }
+                
+                // 绘制花瓣
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    
+                    // 绘制椭圆花瓣
+                    ctx.beginPath();
+                    ctx.ellipse(
+                        this.x, 
+                        this.y, 
+                        this.size, 
+                        this.size / 2, 
+                        this.angle, 
+                        0, 
+                        Math.PI * 2
+                    );
+                    
+                    // 设置渐变填充
+                    const gradient = ctx.createRadialGradient(
+                        this.x, 
+                        this.y, 
+                        0, 
+                        this.x, 
+                        this.y, 
+                        this.size
+                    );
+                    
+                    gradient.addColorStop(0, this.color + '1)'); // 中心较亮
+                    gradient.addColorStop(1, this.color + '0.5)'); // 边缘较透明
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                    
+                    // 添加叶脉
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y - this.size / 2);
+                    ctx.bezierCurveTo(
+                        this.x + this.size / 4, this.y,
+                        this.x - this.size / 4, this.y,
+                        this.x, this.y + this.size / 2
+                    );
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                    
+                    ctx.restore();
+                }
+            }
+            
+            // 创建花瓣数组
+            const petals = [];
+            const petalCount = Math.floor(canvas.width / 10); // 根据屏幕宽度调整数量
+            
+            // 初始化花瓣
+            for (let i = 0; i < petalCount; i++) {
+                petals.push(new Petal());
+            }
+            
+            // 动画循环
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 绘制所有花瓣
+                petals.forEach(petal => {
+                    petal.update();
+                    petal.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // 启动动画
+            animate();
+        });
+    </script>
+</body>
+</html>
